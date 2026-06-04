@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#F4F4EF"/>
+  <text x="90" y="110" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" fill="#070707">Кислород Риг</text>
+  <text x="90" y="160" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#7B7F86">мини-брендбук / агрессивный gaming / локальный магазин сборки ПК</text>
+  <rect x="90" y="230" width="360" height="360" fill="#070707"/>
+  <rect x="150" y="290" width="240" height="240" fill="none" stroke="#CAFF00" stroke-width="12"/>
+  <rect x="150" y="290" width="44" height="240" fill="#CAFF00"/>
+  <text x="270" y="455" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="900" fill="#F4F4EF">КР</text>
+  <text x="530" y="275" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#070707">Правила знака</text>
+  <text x="530" y="330" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#373A33">1. Использовать знак на черном, белом или кислотном фоне.</text>
+  <text x="530" y="380" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#373A33">2. Не добавлять тени, обводки и случайные эффекты.</text>
+  <text x="530" y="430" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#373A33">3. Сохранять свободное поле не меньше высоты буквы К.</text>
+  <text x="530" y="500" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" fill="#070707">Тон коммуникации</text>
+  <text x="530" y="555" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#373A33">Коротко, мощно, без лишней “техно-воды”: сборка, апгрейд, тесты, гарантия.</text>
+  <rect x="90" y="690" width="260" height="170" fill="#070707"/>
+  <rect x="380" y="690" width="260" height="170" fill="#CAFF00"/>
+  <rect x="670" y="690" width="260" height="170" fill="#F4F4EF" stroke="#D8D6CE"/>
+  <rect x="960" y="690" width="260" height="170" fill="#7B7F86"/>
+  <text x="90" y="905" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="#070707">#070707</text>
+  <text x="380" y="905" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="#070707">#CAFF00</text>
+  <text x="670" y="905" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="#070707">#F4F4EF</text>
+  <text x="960" y="905" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="#070707">#7B7F86</text>
+</svg>
