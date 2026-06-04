@@ -334,6 +334,10 @@ body::before {
   left: -6%;
 }
 
+.portrait-card figcaption {
+  max-width: 68%;
+}
+
 .card-c {
   display: grid;
   width: 134px;
@@ -1039,6 +1043,42 @@ h3 {
   cursor: pointer;
 }
 
+.back-to-top {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 30;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(224, 189, 119, 0.56);
+  border-radius: 999px;
+  background: rgba(16, 16, 15, 0.78);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  opacity: 0;
+  padding: 10px 15px;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 180ms ease, transform 180ms ease, background 180ms ease;
+  backdrop-filter: blur(16px);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: rgba(224, 189, 119, 0.92);
+  color: #18120e;
+}
+
 .form-note {
   margin: 0;
   font-size: 13px;
@@ -1103,15 +1143,15 @@ h3 {
   }
 
   .header-proof {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: flex-start;
     max-width: 100%;
-    overflow-x: auto;
-    padding-bottom: 2px;
+    overflow: visible;
+    padding-bottom: 0;
   }
 
   .header-proof span {
-    min-width: max-content;
+    min-width: 0;
   }
 
   .nav {
@@ -1147,17 +1187,10 @@ h3 {
     left: 14px;
   }
 
-  .card-c {
-    right: 14px;
-    bottom: 14px;
-    width: 112px;
-    height: 112px;
-  }
-
   .portrait-card figcaption {
     display: block;
     right: auto;
-    max-width: 54%;
+    max-width: 74%;
   }
 
   .portrait-card figcaption strong {

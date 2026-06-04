@@ -2,6 +2,7 @@ const form = document.querySelector("#brief-form");
 const note = document.querySelector("#form-note");
 const canvas = document.querySelector("#motion-bg");
 const ctx = canvas?.getContext("2d");
+const backToTop = document.querySelector("#back-to-top");
 
 let width = 0;
 let height = 0;
@@ -92,6 +93,19 @@ if (canvas && ctx) {
   window.addEventListener("resize", resizeMotion);
   window.addEventListener("pointermove", (event) => setPointer(event.clientX, event.clientY), { passive: true });
   requestAnimationFrame(drawMotion);
+}
+
+if (backToTop) {
+  const toggleBackToTop = () => {
+    backToTop.classList.toggle("is-visible", window.scrollY > 520);
+  };
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.addEventListener("scroll", toggleBackToTop, { passive: true });
+  toggleBackToTop();
 }
 
 if (form) {
