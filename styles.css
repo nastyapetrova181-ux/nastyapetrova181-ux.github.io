@@ -285,16 +285,19 @@ body::before {
   position: absolute;
   right: 22px;
   bottom: 22px;
-  left: 22px;
+  left: auto;
   z-index: 1;
   display: flex;
   align-items: end;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
+  width: auto;
+  max-width: calc(100% - 44px);
+  text-align: right;
 }
 
 .portrait-card figcaption strong {
-  max-width: calc(100% - 150px);
+  max-width: none;
 }
 
 .portrait-card figcaption span,
@@ -304,6 +307,7 @@ body::before {
 
 .portrait-card figcaption strong {
   font-size: clamp(22px, 3vw, 34px);
+  white-space: nowrap;
 }
 
 .floating-card {
@@ -325,17 +329,18 @@ body::before {
 }
 
 .card-a {
-  top: 9%;
-  right: 0;
+  top: 5%;
+  right: auto;
+  left: -5%;
 }
 
 .card-b {
-  bottom: 18%;
-  left: -6%;
+  bottom: 24%;
+  left: -7%;
 }
 
 .portrait-card figcaption {
-  max-width: 68%;
+  max-width: none;
 }
 
 .card-c {
@@ -1179,18 +1184,23 @@ h3 {
 
   .card-a {
     top: 14px;
-    right: 14px;
+    right: auto;
+    left: 14px;
   }
 
   .card-b {
-    bottom: 88px;
+    bottom: 128px;
     left: 14px;
   }
 
   .portrait-card figcaption {
     display: block;
-    right: auto;
-    max-width: 74%;
+    right: 18px;
+    left: auto;
+    bottom: 22px;
+    width: auto;
+    max-width: calc(100% - 36px);
+    text-align: right;
   }
 
   .portrait-card figcaption strong {
