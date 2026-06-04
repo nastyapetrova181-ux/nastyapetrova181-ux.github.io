@@ -477,6 +477,10 @@ body::before {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.service-wide {
+  grid-column: 1 / -1;
+}
+
 .service-card,
 .price-grid article {
   padding: 24px;
@@ -1126,6 +1130,10 @@ h3 {
   .case-card:first-child,
   .facade {
     grid-column: auto;
+  }
+
+  .service-wide {
+    grid-column: 1 / -1;
   }
 }
 

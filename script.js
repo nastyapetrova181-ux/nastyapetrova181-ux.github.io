@@ -3,6 +3,7 @@ const note = document.querySelector("#form-note");
 const canvas = document.querySelector("#motion-bg");
 const ctx = canvas?.getContext("2d");
 const backToTop = document.querySelector("#back-to-top");
+const telegramLink = document.querySelector(".telegram-link");
 
 let width = 0;
 let height = 0;
@@ -106,6 +107,21 @@ if (backToTop) {
 
   window.addEventListener("scroll", toggleBackToTop, { passive: true });
   toggleBackToTop();
+}
+
+if (telegramLink) {
+  telegramLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    const webLink = telegramLink.href;
+    const openedAt = Date.now();
+    window.location.href = "tg://resolve?domain=Anastasia_Petrova181";
+
+    window.setTimeout(() => {
+      if (Date.now() - openedAt < 1600) {
+        window.location.href = webLink;
+      }
+    }, 900);
+  });
 }
 
 if (form) {
