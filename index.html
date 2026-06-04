@@ -5,14 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Анастасия Петрова — веб- и графический дизайнер</title>
   <meta name="description" content="Веб- и графический дизайн для малого бизнеса: нейминг, логотипы, айдентика, рекламные макеты и оформление объявлений. Ростов-на-Дону, удаленно по России.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260604-redesign">
 </head>
 <body>
+  <canvas class="motion-bg" id="motion-bg" aria-hidden="true"></canvas>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Анастасия Петрова">
-      <span class="brand-mark">АП</span>
+      <span class="brand-mark photo-mark"><img src="assets/anastasia-avatar.webp" alt=""></span>
       <span>Анастасия Петрова</span>
     </a>
+    <div class="header-proof" aria-label="Преимущества работы">
+      <span>без шаблонов</span>
+      <span>смысл + визуал</span>
+      <span>файлы для работы</span>
+      <span>аккуратно в срок</span>
+    </div>
     <nav class="nav" aria-label="Основная навигация">
       <a href="#services">Услуги</a>
       <a href="#portfolio">Портфолио</a>
@@ -24,28 +31,39 @@
   <main id="top">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Ростов-на-Дону / работаю по всей России</p>
+        <p class="eyebrow">Веб- и графический дизайнер для малого бизнеса</p>
         <h1>Помогаю бизнесу выглядеть дороже и продавать понятнее</h1>
         <p class="lead">Веб- и графический дизайн для малого бизнеса: нейминг, логотипы, фирменный стиль, рекламные макеты, оформление объявлений и соцсетей.</p>
+        <div class="hero-proof" aria-label="Ключевые преимущества">
+          <span>премиальная подача без перегруза</span>
+          <span>понятная структура, не просто “красиво”</span>
+          <span>готовлю макеты под реальные задачи</span>
+        </div>
         <div class="hero-actions">
           <a class="btn primary" href="#contact">Обсудить проект</a>
           <a class="btn ghost" href="#portfolio">Смотреть работы</a>
         </div>
+        <p class="location-note">Ростов-на-Дону / онлайн-проекты по России</p>
       </div>
-      <div class="hero-board" aria-label="Превью дизайнерских материалов">
-        <div class="board-card logo-card">
-          <span class="mini-label">Логотип</span>
-          <div class="sample-logo">АП</div>
-          <strong>чистый знак + система</strong>
+      <div class="hero-showcase" aria-label="Брендовый портрет и дизайн-превью">
+        <figure class="portrait-card">
+          <img src="assets/anastasia-portrait.webp" alt="Анастасия Петрова">
+          <figcaption>
+            <span>личный бренд</span>
+            <strong>Анастасия Петрова</strong>
+          </figcaption>
+        </figure>
+        <div class="floating-card card-a">
+          <span class="mini-label">Айдентика</span>
+          <strong>логотип / палитра / носители</strong>
         </div>
-        <div class="board-card ad-card">
+        <div class="floating-card card-b">
           <span class="mini-label">Реклама</span>
-          <h2>акция<br>без шума</h2>
-          <p>структура, контраст, понятный призыв</p>
+          <strong>баннеры, карточки, соцсети</strong>
         </div>
-        <div class="board-card grid-card">
-          <span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span>
+        <div class="floating-card card-c">
+          <span>АП</span>
+          <small>визуальная система</small>
         </div>
       </div>
     </section>
@@ -398,6 +416,6 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260604-redesign"></script>
 </body>
 </html>
