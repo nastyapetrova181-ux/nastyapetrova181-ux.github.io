@@ -115,7 +115,27 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-function openMaxWithMessage(message, statusNode) {
+async function sendLeadToMax(message, statusNode) {
+  try {
+    const endpoint = window.MAX_LEAD_ENDPOINT || "/api/max-lead";
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message }),
+    });
+
+    if (!response.ok) throw new Error("MAX endpoint is not available");
+    if (statusNode) statusNode.textContent = "Заявка отправлена в MAX. Я скоро отвечу.";
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function openMaxWithMessage(message, statusNode) {
+  const delivered = await sendLeadToMax(message, statusNode);
+  if (delivered) return;
+
   const copyAction = navigator.clipboard
     ? navigator.clipboard.writeText(message)
     : Promise.reject();
