@@ -3,7 +3,13 @@ const note = document.querySelector("#form-note");
 const canvas = document.querySelector("#motion-bg");
 const ctx = canvas?.getContext("2d");
 const backToTop = document.querySelector("#back-to-top");
-const telegramLink = document.querySelector(".telegram-link");
+const telegramLinks = document.querySelectorAll(".telegram-link");
+const checklistModal = document.querySelector("#checklist-modal");
+const checklistForm = document.querySelector("#checklist-form");
+const checklistNote = document.querySelector("#checklist-note");
+const checklistOpeners = document.querySelectorAll("[data-open-checklist]");
+const checklistClosers = document.querySelectorAll("[data-close-checklist]");
+const orbitMain = document.querySelector("#contact-orbit-main");
 
 let width = 0;
 let height = 0;
@@ -109,7 +115,24 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-if (telegramLink) {
+function openMaxWithMessage(message, statusNode) {
+  const copyAction = navigator.clipboard
+    ? navigator.clipboard.writeText(message)
+    : Promise.reject();
+
+  copyAction
+    .then(() => {
+      if (statusNode) statusNode.textContent = "Заявка скопирована. MAX откроется сейчас, останется вставить сообщение в чат.";
+    })
+    .catch(() => {
+      if (statusNode) statusNode.textContent = "MAX откроется сейчас. Если текст не скопировался, отправьте данные вручную.";
+    })
+    .finally(() => {
+      window.open("https://max.ru/75456095", "_blank", "noopener,noreferrer");
+    });
+}
+
+telegramLinks.forEach((telegramLink) => {
   telegramLink.addEventListener("click", (event) => {
     event.preventDefault();
     const webLink = telegramLink.href;
@@ -122,6 +145,80 @@ if (telegramLink) {
       }
     }, 900);
   });
+});
+
+if (checklistModal) {
+  const openChecklist = () => {
+    checklistModal.classList.add("is-open");
+    checklistModal.setAttribute("aria-hidden", "false");
+    checklistModal.querySelector("input")?.focus();
+  };
+
+  const closeChecklist = () => {
+    checklistModal.classList.remove("is-open");
+    checklistModal.setAttribute("aria-hidden", "true");
+  };
+
+  checklistOpeners.forEach((button) => button.addEventListener("click", openChecklist));
+  checklistClosers.forEach((button) => button.addEventListener("click", closeChecklist));
+
+  checklistModal.addEventListener("click", (event) => {
+    if (event.target === checklistModal) closeChecklist();
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeChecklist();
+  });
+}
+
+if (checklistForm) {
+  checklistForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(checklistForm);
+    const name = data.get("name") || "";
+    const phone = data.get("phone") || "";
+    const message = `Здравствуйте, Анастасия. Хочу получить чек-лист по запуску визуала. Имя: ${name}. Телефон: ${phone}.`;
+
+    openMaxWithMessage(message, checklistNote);
+  });
+}
+
+if (orbitMain) {
+  const contacts = [
+    { label: "MAX", href: "https://max.ru/75456095", color: "#2d8cff", title: "Написать в MAX" },
+    { label: "TG", href: "https://t.me/Anastasia_Petrova181", color: "#28a7e8", title: "Написать в Telegram" },
+    { label: "TEL", href: "tel:+79885829553", color: "#d5ad65", title: "Позвонить" },
+    { label: "MAIL", href: "mailto:nastya_petrova181@mail.ru", color: "#b87455", title: "Написать на почту" },
+  ];
+  let contactIndex = 0;
+
+  const updateOrbit = () => {
+    const item = contacts[contactIndex % contacts.length];
+    orbitMain.textContent = item.label;
+    orbitMain.href = item.href;
+    orbitMain.setAttribute("aria-label", item.title);
+    orbitMain.style.background = item.color;
+    contactIndex += 1;
+  };
+
+  updateOrbit();
+  window.setInterval(updateOrbit, 2400);
+}
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".section, .service-card, .case-card, .review-grid article, .faq-list details").forEach((element) => {
+    element.classList.add("reveal");
+    revealObserver.observe(element);
+  });
 }
 
 if (form) {
@@ -133,13 +230,6 @@ if (form) {
     const budget = data.get("budget") || "не указан";
     const message = `Здравствуйте, Анастасия. Меня зовут ${name}. Задача: ${task}. Бюджет: ${budget}.`;
 
-    try {
-      await navigator.clipboard.writeText(message);
-      note.textContent = "Заявка скопирована. Откройте MAX и вставьте сообщение в чат.";
-    } catch {
-      note.textContent = "MAX откроется сейчас. Скопируйте текст заявки из формы вручную.";
-    }
-
-    window.open("https://max.ru/75456095", "_blank", "noopener,noreferrer");
+    openMaxWithMessage(message, note);
   });
 }

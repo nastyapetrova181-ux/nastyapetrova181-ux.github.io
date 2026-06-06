@@ -92,6 +92,19 @@ body::before {
   min-width: max-content;
 }
 
+.header-contact {
+  display: grid;
+  gap: 2px;
+  min-width: max-content;
+  color: rgba(248, 243, 234, 0.72);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.header-contact a:hover {
+  color: var(--accent);
+}
+
 .brand-mark {
   display: grid;
   width: 42px;
@@ -251,6 +264,33 @@ body::before {
   min-width: 0;
   min-height: clamp(500px, 56vw, 650px);
   perspective: 1100px;
+}
+
+.motion-strip {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.motion-strip div {
+  display: flex;
+  width: max-content;
+  gap: 34px;
+  padding: 14px 0;
+  animation: stripMove 28s linear infinite;
+}
+
+.motion-strip span {
+  color: rgba(248, 243, 234, 0.7);
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+@keyframes stripMove {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
 }
 
 .portrait-card {
@@ -536,6 +576,46 @@ h3 {
   font-weight: 700;
 }
 
+.urgency {
+  display: grid;
+  grid-template-columns: 110px minmax(280px, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 8% 50%, rgba(224, 189, 119, 0.18), transparent 28%),
+    rgba(255, 255, 255, 0.035);
+}
+
+.urgency h2 {
+  font-size: clamp(30px, 3.3vw, 48px);
+}
+
+.urgency p:not(.eyebrow) {
+  max-width: 850px;
+  margin: 10px 0 0;
+  color: rgba(248, 243, 234, 0.74);
+}
+
+.urgency-icon {
+  display: grid;
+  width: 88px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(224, 189, 119, 0.62);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 34px;
+  font-weight: 950;
+  box-shadow: 0 0 0 0 rgba(224, 189, 119, 0.34);
+  animation: pulseRing 2.2s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+  50% { box-shadow: 0 0 0 16px rgba(224, 189, 119, 0); transform: translateY(-2px); }
+}
+
 .check-list {
   display: grid;
   gap: 12px;
@@ -553,6 +633,79 @@ h3 {
 
 .portfolio-grid {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.deep-dive {
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.deep-grid,
+.bot-flow,
+.review-grid,
+.faq-list {
+  display: grid;
+  gap: 14px;
+}
+
+.deep-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.deep-grid article,
+.bot-flow article,
+.review-grid article,
+.faq-list details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  backdrop-filter: blur(16px);
+  padding: 22px;
+}
+
+.deep-grid article,
+.bot-flow article {
+  min-height: 220px;
+  transform: translateY(0);
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.deep-grid article:hover,
+.bot-flow article:hover,
+.service-card:hover,
+.review-grid article:hover {
+  border-color: rgba(224, 189, 119, 0.46);
+  background: var(--panel-strong);
+  transform: translateY(-4px);
+}
+
+.deep-grid p,
+.bot-flow p,
+.faq-list p,
+.review-grid p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.bot-dive {
+  background:
+    radial-gradient(circle at 85% 22%, rgba(159, 182, 199, 0.12), transparent 28%),
+    rgba(255, 255, 255, 0.018);
+}
+
+.bot-flow {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.bot-flow span {
+  display: grid;
+  width: 38px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(224, 189, 119, 0.16);
+  color: var(--accent);
+  font-weight: 900;
 }
 
 .case-card {
@@ -976,6 +1129,69 @@ h3 {
   font-weight: 900;
 }
 
+.reviews {
+  border-top: 1px solid var(--line);
+}
+
+.review-grid {
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+}
+
+.review-grid article {
+  min-height: 190px;
+}
+
+.review-grid p {
+  font-size: 15px;
+}
+
+.review-grid strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.faq {
+  border-top: 1px solid var(--line);
+}
+
+.faq-list {
+  max-width: 1080px;
+}
+
+.faq-list details {
+  padding: 0;
+  overflow: hidden;
+}
+
+.faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 20px 22px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  float: right;
+  color: var(--accent);
+}
+
+.faq-list details[open] summary::after {
+  content: "−";
+}
+
+.faq-list p {
+  padding: 0 22px 22px;
+}
+
 .pricing {
   border-top: 1px solid var(--line);
 }
@@ -1093,12 +1309,169 @@ h3 {
   font-size: 13px;
 }
 
+.checklist-tab {
+  position: fixed;
+  left: 0;
+  top: 48%;
+  z-index: 35;
+  min-height: 46px;
+  border: 1px solid rgba(224, 189, 119, 0.4);
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(180deg, #e0bd77, #a97643);
+  color: #17120f;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 12px 10px;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%) rotate(180deg);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+.checklist-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(10px);
+}
+
+.checklist-modal.is-open {
+  display: grid;
+}
+
+.checklist-dialog {
+  position: relative;
+  width: min(620px, 100%);
+  border: 1px solid rgba(248, 243, 234, 0.2);
+  border-radius: var(--radius);
+  background: #f8f3ea;
+  color: #15120f;
+  padding: clamp(24px, 5vw, 46px);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.42);
+}
+
+.checklist-dialog h2 {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 0.98;
+}
+
+.checklist-dialog p {
+  color: #5c564d;
+}
+
+.checklist-dialog .eyebrow {
+  color: #a97643;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: 0;
+  background: transparent;
+  color: #69635a;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+.checklist-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.checklist-form label {
+  display: grid;
+  gap: 7px;
+}
+
+.checklist-form span {
+  color: #332d27;
+  font-weight: 900;
+}
+
+.checklist-form input {
+  width: 100%;
+  border: 1px solid #d3c9b8;
+  border-radius: var(--radius);
+  background: #fff;
+  color: #17120f;
+  font: inherit;
+  padding: 15px 16px;
+}
+
+.contact-orbit {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  z-index: 34;
+  display: grid;
+  gap: 8px;
+  transform: translateY(-50%);
+}
+
+.contact-orbit-main,
+.contact-orbit-menu a {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 950;
+}
+
+.contact-orbit-main {
+  width: 62px;
+  aspect-ratio: 1;
+  background: #28a7e8;
+  color: #fff;
+  box-shadow: 0 18px 58px rgba(0, 0, 0, 0.34);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.contact-orbit-main:hover {
+  transform: scale(1.06);
+}
+
+.contact-orbit-menu {
+  display: grid;
+  gap: 7px;
+  justify-items: center;
+}
+
+.contact-orbit-menu a {
+  width: 42px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(248, 243, 234, 0.22);
+  background: rgba(16, 16, 15, 0.82);
+  color: var(--ink);
+  font-size: 10px;
+  backdrop-filter: blur(14px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 480ms ease, transform 480ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 980px) {
   .hero,
   .intro,
   .included,
   .pc-hero,
-  .contact {
+  .contact,
+  .urgency {
     grid-template-columns: 1fr;
   }
 
@@ -1120,6 +1493,9 @@ h3 {
   .steps,
   .portfolio-grid,
   .compare-grid,
+  .deep-grid,
+  .bot-flow,
+  .review-grid,
   .price-grid,
   .logo-options,
   .brandbook,
@@ -1149,6 +1525,10 @@ h3 {
   .site-header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .header-contact {
+    min-width: 0;
   }
 
   .brand {
@@ -1223,6 +1603,9 @@ h3 {
   .steps,
   .portfolio-grid,
   .compare-grid,
+  .deep-grid,
+  .bot-flow,
+  .review-grid,
   .price-grid,
   .logo-options,
   .brandbook,
@@ -1252,5 +1635,31 @@ h3 {
   .facade-right {
     align-items: flex-start;
     text-align: left;
+  }
+
+  .checklist-tab {
+    top: auto;
+    bottom: 86px;
+  }
+
+  .contact-orbit {
+    right: 14px;
+    top: auto;
+    bottom: 76px;
+    transform: none;
+  }
+
+  .contact-orbit-main {
+    width: 54px;
+  }
+
+  .contact-orbit-menu {
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: end;
+  }
+
+  .contact-orbit-menu a {
+    width: 36px;
+    font-size: 9px;
   }
 }
