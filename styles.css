@@ -549,6 +549,14 @@ h3 {
   margin: 0 0 18px;
 }
 
+.case-card .case-note {
+  margin-top: 12px;
+  color: rgba(248, 243, 234, 0.88);
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .service-card strong,
 .price-grid strong {
   display: block;
@@ -891,6 +899,13 @@ h3 {
   font-size: 52px;
   font-weight: 950;
   line-height: 1;
+}
+
+.rig-logo img {
+  display: block;
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
 }
 
 .mark-a {
