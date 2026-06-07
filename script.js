@@ -10,7 +10,7 @@ const checklistNote = document.querySelector("#checklist-note");
 const checklistOpeners = document.querySelectorAll("[data-open-checklist]");
 const checklistClosers = document.querySelectorAll("[data-close-checklist]");
 const orbitMain = document.querySelector("#contact-orbit-main");
-const MAX_FALLBACK_URL = "https://web.max.ru/";
+const CONTACT_EMAIL = "nastya_petrova181@mail.ru";
 
 let width = 0;
 let height = 0;
@@ -116,41 +116,18 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-async function sendLeadToMax(message, statusNode) {
-  try {
-    const endpoint = window.MAX_LEAD_ENDPOINT || "/api/max-lead";
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-    });
+function openEmailWithMessage(subject, message, statusNode) {
+  const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
 
-    if (!response.ok) throw new Error("MAX endpoint is not available");
-    if (statusNode) statusNode.textContent = "Заявка отправлена в MAX. Я скоро отвечу.";
-    return true;
-  } catch {
-    return false;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(message).catch(() => {});
   }
-}
 
-async function openMaxWithMessage(message, statusNode) {
-  const delivered = await sendLeadToMax(message, statusNode);
-  if (delivered) return;
+  if (statusNode) {
+    statusNode.textContent = "Откроется письмо на почту. Текст заявки также скопирован, если браузер разрешил копирование.";
+  }
 
-  const copyAction = navigator.clipboard
-    ? navigator.clipboard.writeText(message)
-    : Promise.reject();
-
-  copyAction
-    .then(() => {
-      if (statusNode) statusNode.textContent = "Заявка скопирована. MAX откроется сейчас, останется отправить сообщение.";
-    })
-    .catch(() => {
-      if (statusNode) statusNode.textContent = "MAX откроется сейчас. Если текст не скопировался, отправьте данные вручную.";
-    })
-    .finally(() => {
-      window.open(MAX_FALLBACK_URL, "_blank", "noopener,noreferrer");
-    });
+  window.location.href = mailto;
 }
 
 function openTelegram(webLink) {
@@ -203,18 +180,18 @@ if (checklistForm) {
     const phone = data.get("phone") || "";
     const message = `Здравствуйте, Анастасия. Хочу получить чек-лист по запуску визуала. Имя: ${name}. Телефон: ${phone}.`;
 
-    openMaxWithMessage(message, checklistNote);
+    openEmailWithMessage("Чек-лист по запуску визуала", message, checklistNote);
   });
 }
 
 if (orbitMain) {
   const contacts = [
     {
-      kind: "max",
-      href: MAX_FALLBACK_URL,
-      color: "#2d8cff",
-      title: "Написать в MAX",
-      icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 17.8V6.2c0-1.3.9-2.2 2.2-2.2h11.2c1.3 0 2.2.9 2.2 2.2v11.6c0 1.3-.9 2.2-2.2 2.2H6.4c-1.3 0-2.2-.9-2.2-2.2Zm3.8-2.4h2V9.7l2.1 3h.2l2.1-3v5.7h2V7H14l-1.8 2.8L10.4 7H8v8.4Z"/></svg>',
+      kind: "mail",
+      href: `mailto:${CONTACT_EMAIL}`,
+      color: "#b87455",
+      title: "Написать на почту",
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm8 7.5L4 7.7V17h16V7.7l-8 4.8Zm0-2.3L19.4 7H4.6l7.4 3.2Z"/></svg>',
     },
     {
       kind: "tg",
@@ -229,13 +206,6 @@ if (orbitMain) {
       color: "#d5ad65",
       title: "Позвонить",
       icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.5 3 3.9 5.4 6.9 6.9l2.3-2.3c.3-.3.8-.4 1.2-.3 1.3.4 2.6.6 4 .6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.1 21 3 12.9 3 3c0-.6.4-1 1-1h3.3c.6 0 1 .4 1 1 0 1.4.2 2.7.6 4 .1.4 0 .9-.3 1.2l-2 2.6Z"/></svg>',
-    },
-    {
-      kind: "mail",
-      href: "mailto:nastya_petrova181@mail.ru",
-      color: "#b87455",
-      title: "Написать на почту",
-      icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm8 7.5L4 7.7V17h16V7.7l-8 4.8Zm0-2.3L19.4 7H4.6l7.4 3.2Z"/></svg>',
     },
   ];
   let contactIndex = 0;
@@ -288,6 +258,6 @@ if (form) {
     const budget = data.get("budget") || "не указан";
     const message = `Здравствуйте, Анастасия. Меня зовут ${name}. Задача: ${task}. Бюджет: ${budget}.`;
 
-    openMaxWithMessage(message, note);
+    openEmailWithMessage("Заявка с сайта Анастасии Петровой", message, note);
   });
 }
