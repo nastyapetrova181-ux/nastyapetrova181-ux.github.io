@@ -1,7 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
-  <rect width="1200" height="1200" fill="#070707"/>
-  <rect x="180" y="180" width="840" height="840" fill="none" stroke="#CAFF00" stroke-width="28"/>
-  <rect x="180" y="180" width="130" height="840" fill="#CAFF00"/>
-  <text x="600" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="245" font-weight="900" fill="#F4F4EF">КР</text>
-  <text x="600" y="835" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800" fill="#CAFF00">КИСЛОРОД РИГ</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Кислород Риг</title>
+  <desc id="desc">Агрессивный gaming-логотип для магазина сборки ПК.</desc>
+  <defs>
+    <linearGradient id="acid" x1="190" y1="120" x2="1010" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D9FF00"/>
+      <stop offset="0.52" stop-color="#A7FF00"/>
+      <stop offset="1" stop-color="#5DFF7B"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.65 0 0 0 0 1 0 0 0 0 0 0 0 0 0.72 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="720" rx="36" fill="#050605"/>
+  <path d="M82 96h1036v528H82V96Z" fill="#090A09" stroke="#1F241D" stroke-width="2"/>
+  <path d="M117 130h966v460H117V130Z" fill="none" stroke="#CAFF00" stroke-width="10" opacity=".16"/>
+  <path d="M156 182h242l58 58v240l-58 58H156l-58-58V240l58-58Z" fill="#0C0E0C" stroke="url(#acid)" stroke-width="18" filter="url(#glow)"/>
+  <path d="M172 214h128v64h-58v58h58v64H172V214Z" fill="url(#acid)"/>
+  <path d="M320 214h62l44 44v70l-38 38 48 104h-76l-39-86h-24v86h-66v-64h34V278h-34v-64h89Zm-23 64v48h52l12-12v-24l-12-12h-52Z" fill="#F4F4EF"/>
+  <path d="M151 560h278" stroke="#CAFF00" stroke-width="10"/>
+  <path d="M507 210h94v108h18l88-108h111L694 354l134 156H713l-94-112h-18v112h-94V210Z" fill="#F4F4EF"/>
+  <path d="M862 210h168l70 70v96l-70 70h-74v64h-94V210Zm94 82v72h43l15-15v-42l-15-15h-43Z" fill="url(#acid)"/>
+  <text x="510" y="580" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="900" letter-spacing="1" fill="#F4F4EF">КИСЛОРОД РИГ</text>
+  <text x="512" y="630" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" letter-spacing="3" fill="#CAFF00">СОБИРАЕМ МОЩНОСТЬ ПОД ТВОЮ ЗАДАЧУ</text>
 </svg>
