@@ -10,6 +10,7 @@ const checklistNote = document.querySelector("#checklist-note");
 const checklistOpeners = document.querySelectorAll("[data-open-checklist]");
 const checklistClosers = document.querySelectorAll("[data-close-checklist]");
 const orbitMain = document.querySelector("#contact-orbit-main");
+const MAX_FALLBACK_URL = "https://web.max.ru/";
 
 let width = 0;
 let height = 0;
@@ -142,28 +143,31 @@ async function openMaxWithMessage(message, statusNode) {
 
   copyAction
     .then(() => {
-      if (statusNode) statusNode.textContent = "Заявка скопирована. MAX откроется сейчас, останется вставить сообщение в чат.";
+      if (statusNode) statusNode.textContent = "Заявка скопирована. MAX откроется сейчас, останется отправить сообщение.";
     })
     .catch(() => {
       if (statusNode) statusNode.textContent = "MAX откроется сейчас. Если текст не скопировался, отправьте данные вручную.";
     })
     .finally(() => {
-      window.open("https://max.ru/75456095", "_blank", "noopener,noreferrer");
+      window.open(MAX_FALLBACK_URL, "_blank", "noopener,noreferrer");
     });
+}
+
+function openTelegram(webLink) {
+  const openedAt = Date.now();
+  window.location.href = "tg://resolve?domain=Anastasia_Petrova181";
+
+  window.setTimeout(() => {
+    if (Date.now() - openedAt < 1600) {
+      window.location.href = webLink;
+    }
+  }, 900);
 }
 
 telegramLinks.forEach((telegramLink) => {
   telegramLink.addEventListener("click", (event) => {
     event.preventDefault();
-    const webLink = telegramLink.href;
-    const openedAt = Date.now();
-    window.location.href = "tg://resolve?domain=Anastasia_Petrova181";
-
-    window.setTimeout(() => {
-      if (Date.now() - openedAt < 1600) {
-        window.location.href = webLink;
-      }
-    }, 900);
+    openTelegram(telegramLink.href);
   });
 });
 
@@ -205,21 +209,55 @@ if (checklistForm) {
 
 if (orbitMain) {
   const contacts = [
-    { label: "MAX", href: "https://max.ru/75456095", color: "#2d8cff", title: "Написать в MAX" },
-    { label: "TG", href: "https://t.me/Anastasia_Petrova181", color: "#28a7e8", title: "Написать в Telegram" },
-    { label: "TEL", href: "tel:+79885829553", color: "#d5ad65", title: "Позвонить" },
-    { label: "MAIL", href: "mailto:nastya_petrova181@mail.ru", color: "#b87455", title: "Написать на почту" },
+    {
+      kind: "max",
+      href: MAX_FALLBACK_URL,
+      color: "#2d8cff",
+      title: "Написать в MAX",
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 17.8V6.2c0-1.3.9-2.2 2.2-2.2h11.2c1.3 0 2.2.9 2.2 2.2v11.6c0 1.3-.9 2.2-2.2 2.2H6.4c-1.3 0-2.2-.9-2.2-2.2Zm3.8-2.4h2V9.7l2.1 3h.2l2.1-3v5.7h2V7H14l-1.8 2.8L10.4 7H8v8.4Z"/></svg>',
+    },
+    {
+      kind: "tg",
+      href: "https://t.me/Anastasia_Petrova181",
+      color: "#28a7e8",
+      title: "Написать в Telegram",
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 4.6 18.6 20c-.2.9-.8 1.1-1.6.7l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.7 1.8 12.2c-1-.3-1-1 .2-1.5L20.4 3.6c.9-.3 1.7.2 1.4 1Z"/></svg>',
+    },
+    {
+      kind: "tel",
+      href: "tel:+79885829553",
+      color: "#d5ad65",
+      title: "Позвонить",
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.5 3 3.9 5.4 6.9 6.9l2.3-2.3c.3-.3.8-.4 1.2-.3 1.3.4 2.6.6 4 .6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.1 21 3 12.9 3 3c0-.6.4-1 1-1h3.3c.6 0 1 .4 1 1 0 1.4.2 2.7.6 4 .1.4 0 .9-.3 1.2l-2 2.6Z"/></svg>',
+    },
+    {
+      kind: "mail",
+      href: "mailto:nastya_petrova181@mail.ru",
+      color: "#b87455",
+      title: "Написать на почту",
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm8 7.5L4 7.7V17h16V7.7l-8 4.8Zm0-2.3L19.4 7H4.6l7.4 3.2Z"/></svg>',
+    },
   ];
   let contactIndex = 0;
+  let currentContact = contacts[0];
 
   const updateOrbit = () => {
     const item = contacts[contactIndex % contacts.length];
-    orbitMain.textContent = item.label;
+    currentContact = item;
+    orbitMain.innerHTML = item.icon;
     orbitMain.href = item.href;
     orbitMain.setAttribute("aria-label", item.title);
+    orbitMain.title = item.title;
     orbitMain.style.background = item.color;
     contactIndex += 1;
   };
+
+  orbitMain.addEventListener("click", (event) => {
+    if (currentContact.kind === "tg") {
+      event.preventDefault();
+      openTelegram(currentContact.href);
+    }
+  });
 
   updateOrbit();
   window.setInterval(updateOrbit, 2400);

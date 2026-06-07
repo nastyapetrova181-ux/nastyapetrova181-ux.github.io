@@ -7,4 +7,4 @@ For real direct delivery into a separate MAX chat, deploy the project on a host 
 - `MAX_BOT_TOKEN` - token of the MAX bot
 - `MAX_CHAT_ID` - chat id where leads should arrive
 
-The browser sends form text to `/api/max-lead`. If that server endpoint is unavailable, the site falls back to copying the lead text and opening `https://max.ru/75456095`.
+The browser sends form text to `/api/max-lead`. If that server endpoint is unavailable, the site falls back to copying the lead text and opening `https://web.max.ru/`.
