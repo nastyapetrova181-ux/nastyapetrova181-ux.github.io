@@ -11,6 +11,7 @@ const checklistOpeners = document.querySelectorAll("[data-open-checklist]");
 const checklistClosers = document.querySelectorAll("[data-close-checklist]");
 const orbitMain = document.querySelector("#contact-orbit-main");
 const CONTACT_EMAIL = "nastya_petrova181@mail.ru";
+const EMAIL_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 let width = 0;
 let height = 0;
@@ -116,18 +117,30 @@ if (backToTop) {
   toggleBackToTop();
 }
 
-function openEmailWithMessage(subject, message, statusNode) {
-  const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+async function sendEmailLead(fields, statusNode, successText) {
+  if (statusNode) statusNode.textContent = "Отправляю заявку...";
 
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(message).catch(() => {});
+  try {
+    const response = await fetch(EMAIL_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _captcha: "false",
+        _template: "table",
+        ...fields,
+      }),
+    });
+
+    if (!response.ok) throw new Error("Email service is unavailable");
+    if (statusNode) statusNode.textContent = successText;
+  } catch {
+    if (statusNode) {
+      statusNode.textContent = `Не получилось отправить автоматически. Напишите на ${CONTACT_EMAIL} или попробуйте еще раз.`;
+    }
   }
-
-  if (statusNode) {
-    statusNode.textContent = "Откроется письмо на почту. Текст заявки также скопирован, если браузер разрешил копирование.";
-  }
-
-  window.location.href = mailto;
 }
 
 function openTelegram(webLink) {
@@ -173,14 +186,19 @@ if (checklistModal) {
 }
 
 if (checklistForm) {
-  checklistForm.addEventListener("submit", (event) => {
+  checklistForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const data = new FormData(checklistForm);
     const name = data.get("name") || "";
     const phone = data.get("phone") || "";
-    const message = `Здравствуйте, Анастасия. Хочу получить чек-лист по запуску визуала. Имя: ${name}. Телефон: ${phone}.`;
 
-    openEmailWithMessage("Чек-лист по запуску визуала", message, checklistNote);
+    await sendEmailLead({
+      _subject: "Чек-лист по запуску визуала",
+      "Форма": "Получить чек-лист",
+      "Имя": name,
+      "Телефон": phone,
+      "Сообщение": "Хочу получить чек-лист по запуску визуала.",
+    }, checklistNote, "Заявка отправлена. Я пришлю чек-лист и уточню задачу.");
   });
 }
 
@@ -256,8 +274,13 @@ if (form) {
     const name = data.get("name") || "";
     const task = data.get("task") || "";
     const budget = data.get("budget") || "не указан";
-    const message = `Здравствуйте, Анастасия. Меня зовут ${name}. Задача: ${task}. Бюджет: ${budget}.`;
 
-    openEmailWithMessage("Заявка с сайта Анастасии Петровой", message, note);
+    await sendEmailLead({
+      _subject: "Заявка с сайта Анастасии Петровой",
+      "Форма": "Рассказать о задаче",
+      "Имя": name,
+      "Задача": task,
+      "Бюджет": budget,
+    }, note, "Заявка отправлена. Я скоро отвечу на почту или свяжусь удобным способом.");
   });
 }
