@@ -737,6 +737,7 @@ h3 {
 .case-pc .case-visual { background: #070707; color: var(--neon); }
 .case-kids .case-visual { background: #d8ecff; color: #2b5379; }
 .case-club .case-visual { background: #1b2541; color: #8ee4ff; }
+.case-club .case-logo-preview { background: #050505; }
 .case-tools .case-visual { background: #e6e0d2; color: #2a2a26; }
 .case-plaster .case-visual { background: #cfc4ae; color: #4b4033; }
 .case-beer .case-visual { background: #241b14; color: #e3bd67; }
