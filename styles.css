@@ -1168,6 +1168,417 @@ h3 {
   font-weight: 900;
 }
 
+.territoria-case {
+  --territoria-purple: #b51cff;
+  --territoria-violet: #6e18ff;
+  --territoria-deep: #120019;
+  --territoria-ink: #f8f2ff;
+  background:
+    radial-gradient(circle at 76% 8%, rgba(181, 28, 255, 0.25), transparent 28vw),
+    radial-gradient(circle at 18% 22%, rgba(110, 24, 255, 0.22), transparent 30vw),
+    linear-gradient(135deg, #050407 0%, #120019 48%, #050407 100%);
+}
+
+.territoria-case .eyebrow,
+.territoria-case .mini-label,
+.territoria-case .neon {
+  color: var(--territoria-purple);
+}
+
+.territoria-case .pc-hero p {
+  color: rgba(248, 242, 255, 0.78);
+}
+
+.territoria-case .pc-badge {
+  border-color: rgba(181, 28, 255, 0.7);
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(181, 28, 255, 0.3), transparent 55%),
+    rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 44px rgba(181, 28, 255, 0.2);
+}
+
+.territoria-case .pc-badge span {
+  color: var(--territoria-purple);
+  font-size: 46px;
+}
+
+.territoria-case .pc-badge small {
+  margin-top: -32px;
+  color: rgba(248, 242, 255, 0.78);
+}
+
+.territoria-scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+}
+
+.territoria-scope span {
+  border: 1px solid rgba(181, 28, 255, 0.34);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: rgba(248, 242, 255, 0.84);
+  background: rgba(255, 255, 255, 0.045);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.territoria-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.territoria-work-card {
+  min-height: 510px;
+  border: 1px solid rgba(181, 28, 255, 0.24);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025)),
+    #0b090d;
+  padding: 18px;
+  overflow: hidden;
+}
+
+.territoria-work-card h3 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: clamp(22px, 2.2vw, 31px);
+  line-height: 1.05;
+}
+
+.territoria-work-card p {
+  margin: 0;
+  color: rgba(248, 242, 255, 0.72);
+  font-size: 16px;
+}
+
+.territoria-work-card-wide {
+  grid-column: span 2;
+  min-height: 360px;
+}
+
+.territoria-preview {
+  position: relative;
+  display: grid;
+  min-height: 250px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(181, 28, 255, 0.26);
+  border-radius: 7px;
+  overflow: hidden;
+  background: #070407;
+}
+
+.territoria-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.28;
+}
+
+.visual-logo {
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(181, 28, 255, 0.2), transparent 56%),
+    #050505;
+}
+
+.visual-logo img {
+  display: block;
+  width: min(72%, 270px);
+  height: min(72%, 270px);
+  object-fit: contain;
+  filter: drop-shadow(0 0 26px rgba(181, 28, 255, 0.55));
+}
+
+.visual-meaning {
+  align-content: start;
+  padding: 34px;
+  background: linear-gradient(135deg, #27003d, #160022);
+}
+
+.visual-meaning h4,
+.visual-config h4 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 12px;
+  color: var(--territoria-purple);
+  font-size: clamp(24px, 2.8vw, 42px);
+  line-height: 1.05;
+}
+
+.visual-meaning p {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 18px;
+}
+
+.visual-brandbook {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 18px;
+  background:
+    linear-gradient(135deg, rgba(181, 28, 255, 0.18), transparent 45%),
+    #09050d;
+}
+
+.visual-brandbook span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(181, 28, 255, 0.4);
+  border-radius: 6px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.055);
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.visual-brandbook span:nth-child(1) {
+  color: var(--territoria-purple);
+  font-size: 42px;
+}
+
+.visual-brandbook span:nth-child(2) {
+  color: #fff;
+  background: linear-gradient(135deg, #b51cff, #5d19ff);
+}
+
+.visual-room {
+  background:
+    radial-gradient(circle at 68% 45%, rgba(255, 255, 255, 0.22), transparent 22%),
+    linear-gradient(180deg, #171719, #050505);
+}
+
+.visual-room-one::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  bottom: 17%;
+  width: 26%;
+  height: 58%;
+  border-radius: 46% 46% 22% 22%;
+  background:
+    linear-gradient(90deg, #2c2c2d 0 48%, #bc53ff 48% 52%, #1d1d1f 52%),
+    #202124;
+  box-shadow:
+    120px 4px 0 -52px rgba(255, 255, 255, 0.14),
+    0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.visual-room-one::after {
+  background:
+    linear-gradient(to top, #e8e8e8 0 26%, transparent 26%),
+    radial-gradient(circle at 72% 36%, transparent 0 18%, rgba(255, 255, 255, 0.9) 18% 20%, transparent 20%),
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: auto, auto, 34px 34px, 34px 34px;
+  opacity: 1;
+}
+
+.visual-room-two {
+  background:
+    linear-gradient(105deg, transparent 0 36%, rgba(181, 28, 255, 0.7) 36% 37%, transparent 37%),
+    linear-gradient(75deg, transparent 0 60%, rgba(181, 28, 255, 0.5) 60% 61%, transparent 61%),
+    linear-gradient(90deg, #08070a, #1c1026 48%, #050407);
+}
+
+.visual-room-two::before {
+  content: "ТЕРРИТОРИЯ\A ЗДЕСЬ НАЧИНАЕТСЯ ИГРА\A НАШЕ ДЕЛО - ПОБЕЖДАТЬ";
+  white-space: pre-line;
+  position: absolute;
+  left: 8%;
+  top: 18%;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(16px, 2vw, 28px);
+  font-weight: 950;
+  line-height: 1.15;
+}
+
+.visual-room-two::after {
+  background:
+    radial-gradient(circle at 78% 54%, rgba(181, 28, 255, 0.36), transparent 16%),
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: auto, 34px 34px, 34px 34px;
+  opacity: 1;
+}
+
+.visual-price {
+  align-content: start;
+  gap: 10px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(181, 28, 255, 0.38), transparent 22%),
+    #120019;
+}
+
+.visual-price strong {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  padding: 8px 34px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #6f12aa, #b51cff);
+  color: #fff;
+  font-size: 28px;
+}
+
+.visual-price div {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-radius: 4px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(181, 28, 255, 0.8), rgba(110, 24, 255, 0.62));
+  color: #fff;
+  font-weight: 950;
+}
+
+.visual-config {
+  align-content: start;
+  gap: 10px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(181, 28, 255, 0.34), transparent 24%),
+    #120019;
+}
+
+.visual-config div {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.74fr 1fr;
+  gap: 12px;
+  border: 1px solid rgba(181, 28, 255, 0.42);
+  border-radius: 6px;
+  padding: 12px;
+  color: #fff;
+}
+
+.visual-config b {
+  color: var(--territoria-purple);
+}
+
+.visual-tournament {
+  align-content: center;
+  gap: 12px;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 12% 72%, rgba(255, 255, 255, 0.16), transparent 18%),
+    linear-gradient(135deg, #1b0524, #09040d);
+}
+
+.visual-tournament span,
+.visual-tournament strong,
+.visual-tournament small {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.visual-tournament span {
+  max-width: 360px;
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 950;
+  line-height: 0.9;
+}
+
+.visual-tournament strong {
+  width: max-content;
+  padding: 12px 22px;
+  background: linear-gradient(135deg, #b51cff, #7f00b9);
+  font-size: clamp(30px, 4vw, 58px);
+}
+
+.visual-tournament small {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.visual-facade {
+  grid-template-columns: 1fr 0.48fr 0.42fr;
+  align-items: end;
+  gap: 10px;
+  padding: 22px;
+  background:
+    linear-gradient(90deg, #3d3028 0 16%, #1d1714 16% 20%, #2a211d 20% 100%);
+}
+
+.facade-sign,
+.facade-door,
+.facade-side {
+  position: relative;
+  z-index: 1;
+}
+
+.facade-sign {
+  align-self: start;
+  grid-column: 1 / -1;
+  border-radius: 4px;
+  padding: 16px;
+  background: #050505;
+  color: var(--territoria-purple);
+  font-size: clamp(26px, 4vw, 48px);
+  font-weight: 950;
+  text-shadow: 0 0 18px rgba(181, 28, 255, 0.75);
+}
+
+.facade-door {
+  min-height: 150px;
+  border: 1px solid rgba(181, 28, 255, 0.46);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(181, 28, 255, 0.34), transparent 28%),
+    #080808;
+}
+
+.facade-side {
+  min-height: 150px;
+  padding: 18px;
+  background: #262626;
+  color: var(--territoria-purple);
+  font-weight: 950;
+  line-height: 1.5;
+}
+
+.visual-support {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 10px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 60% 50%, rgba(181, 28, 255, 0.24), transparent 32%),
+    #09050d;
+}
+
+.visual-support span {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(181, 28, 255, 0.42);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: rgba(248, 242, 255, 0.88);
+  background: rgba(255, 255, 255, 0.055);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .reviews {
   border-top: 1px solid var(--line);
 }
@@ -1621,12 +2032,14 @@ h3 {
   .price-grid,
   .logo-options,
   .brandbook,
-  .pc-assets {
+  .pc-assets,
+  .territoria-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .case-card:first-child,
-  .facade {
+  .facade,
+  .territoria-work-card-wide {
     grid-column: auto;
   }
 
@@ -1732,6 +2145,7 @@ h3 {
   .logo-options,
   .brandbook,
   .pc-assets,
+  .territoria-gallery,
   .tg-banner {
     grid-template-columns: 1fr;
   }
@@ -1746,6 +2160,10 @@ h3 {
 
   .facade-board {
     grid-template-columns: 1fr;
+  }
+
+  .territoria-work-card-wide {
+    grid-column: auto;
   }
 
   .door {
